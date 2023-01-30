@@ -128,6 +128,16 @@ def evaluate(similarity_dict: dict, metric={'success_1,5,10'}) -> tuple:
 
 if __name__ == "__main__":
     # run('./data/birkbeck.dat', 10, 100)
-    with open('similarity_dict.pkl', 'rb') as f:
-        similarities = pickle.load(f)
+    objects = list()
+    with (open('similarity_dict.pkl', 'rb')) as openfile:
+        while True:
+            try:
+                objects.append(pickle.load(openfile))
+            except EOFError:
+                break
+
+    similarities = dict()
+    for dictionary in objects:
+        similarities.update(dictionary)
+
     evaluate(similarities)
