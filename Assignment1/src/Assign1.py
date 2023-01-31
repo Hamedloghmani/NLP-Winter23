@@ -105,7 +105,7 @@ def building_pytrec_input(similarity_dict: dict) -> tuple:
         label, predictions = similarity_dict[word]
         run[word] = dict()
         """
-        next loop's idea is inspired by 1)https://github.com/bandpooja/Assignment_1
+        next loop's idea for reverse priority, is inspired by 1)https://github.com/bandpooja/Assignment_1
         2)https://github.com/cvangysel/pytrec_eval/issues/16
         """
         for pred in predictions[0:1]:
