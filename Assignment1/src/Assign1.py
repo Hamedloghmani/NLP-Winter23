@@ -111,11 +111,11 @@ def building_pytrec_input(similarity_dict: dict) -> tuple:
         for pred in predictions[0:1]:
             run[word][pred[0]] = 3
 
-        for pred in predictions[0:5]:
+        for pred in predictions[1:5]:
             if pred[0] not in run[word]:
                 run[word][pred[0]] = 2
 
-        for pred in predictions[0:10]:
+        for pred in predictions[5:10]:
             if pred[0] not in run[word]:
                 run[word][pred[0]] = 1
 
