@@ -41,7 +41,7 @@ def process_wordnet() -> list:
     processed_wordnet = list()
     for word in tqdm(wordnet.all_synsets()):
         processed_wordnet.append(re.sub("\.[a-zA-Z]*\d*", '', word.name()))
-    return processed_wordnet
+    return list(set(processed_wordnet))
 
 
 def get_similarities(misspelled_pairs: list, processed_wordnet: list, limit: int = 10) -> dict:
@@ -127,7 +127,7 @@ def evaluate(similarity_dict: dict, metric={'success_1,5,10'}) -> tuple:
 
 
 if __name__ == "__main__":
-    # run('./data/birkbeck.dat', 10, 100)
+    run('./data/birkbeck.dat', 10, 100)
     objects = list()
     with (open('similarity_dict.pkl', 'rb')) as openfile:
         while True:
