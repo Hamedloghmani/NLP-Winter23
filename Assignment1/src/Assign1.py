@@ -140,7 +140,7 @@ def evaluate(similarity_dict: dict, metric={'success_1,5,10'}, output = '../outp
 
 if __name__ == "__main__":
 
-    run('../birkbeck.dat', 10, 100)
+    run('../data/birkbeck.dat', 10, 100)
     objects = list()
 
     with (open('../data/similarity_dict.pkl', 'rb')) as openfile:
