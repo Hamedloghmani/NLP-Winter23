@@ -122,7 +122,7 @@ def building_pytrec_input(similarity_dict: dict) -> tuple:
         qrel[word] = {label: 1}
     return qrel, run
 
-def evaluate(similarity_dict: dict, metric={'success_1,5,10'}) -> tuple:
+def evaluate(similarity_dict: dict, metric={'success_1,5,10'}, output = '../output') -> tuple:
     """
     Args:
         similarity_dict: output of get_similarities() function
@@ -133,8 +133,8 @@ def evaluate(similarity_dict: dict, metric={'success_1,5,10'}) -> tuple:
     qrel, run_ = building_pytrec_input(similarity_dict)
     df = pd.DataFrame.from_dict(pytrec_eval.RelevanceEvaluator(qrel, metric).evaluate(run_))
     df_mean = df.mean(axis=1)
-    df_mean.to_csv('../output/evaluation_mean.csv', header=False, index=True)
-    df.to_csv('../output/evaluation.csv', header=False, index=True)
+    df_mean.to_csv(f'{output}/evaluation_mean.csv', header=False, index=True)
+    df.to_csv(f'{output}/evaluation.csv', header=False, index=True)
     return df, df_mean
 
 
