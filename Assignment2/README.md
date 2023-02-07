@@ -13,4 +13,4 @@ pip install -r requirement.txt
 ```
 
 ## Quick Start
-As a quick starter pack, a [notebook](https://github.com/Hamedloghmani/NLP-Winter23/blob/main/Assignment2/src/Assign2_QuickStart.ipynb)  is considered with the running example and parameters
+As a quick starter pack, a [notebook](https://github.com/Hamedloghmani/NLP-Winter23/blob/main/Assignment2/src/Assign2_Quickstart.ipynb)  is considered with the running example and parameters
