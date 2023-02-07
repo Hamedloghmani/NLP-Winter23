@@ -1,3 +1,4 @@
+import nltk.lm
 from tqdm import tqdm
 from nltk.corpus import brown
 from nltk.lm.preprocessing import padded_everygram_pipeline
@@ -9,6 +10,10 @@ from Assignment1.src.Assign1 import evaluate
 # nltk.download('brown')
 
 def load_brown() -> list:
+    """
+    Returns:
+        a list of lower cased sentences in brown dataset.
+    """
     sentences = brown.sents()
     output = list()
     for i in range(len(sentences)):
@@ -17,7 +22,13 @@ def load_brown() -> list:
     return output
 
 
-def preprocess(misspelling_file: str = '../data/APPLING1DAT.643'):
+def preprocess(misspelling_file: str = '../data/APPLING1DAT.643') -> list:
+    """
+    Args:
+        misspelling_file: address of the misspelling corpus
+    Returns:
+        list of tuples ( each tuple is (misspelled word, correct spelling, sentence that misspelling happened))
+    """
     data = list()
     with open(misspelling_file) as file:
         spellings = file.readlines()
@@ -31,16 +42,29 @@ def preprocess(misspelling_file: str = '../data/APPLING1DAT.643'):
     return data
 
 
-def build_ngram(n: int, sentences: list):
-
+def build_ngram(n: int, sentences: list) -> nltk.lm.MLE:
+    """
+    Args:
+        n: ngram will be build based on this value
+        sentences: list of sentences to train language model on them
+    Returns:
+        language model's object
+    """
     train_data, padded_sentences = padded_everygram_pipeline(n, sentences)
     model = MLE(n)
     model.fit(train_data, padded_sentences)
     return model
 
 
-def get_suggestions(limit: int, language_model, misspelled_dataset):
-
+def get_suggestions(limit: int, language_model: nltk.lm.MLE, misspelled_dataset: list) -> dict:
+    """
+    Args:
+        limit: suggestion list size
+        language_model: language model object
+        misspelled_dataset: dictionary of misspelled dataset
+    Returns:
+        dictionary with misspelled word as keys, tuple of correct spelling and suggestions as value
+    """
     output_dict = dict()
 
     for record in tqdm(misspelled_dataset):
@@ -54,7 +78,12 @@ def get_suggestions(limit: int, language_model, misspelled_dataset):
     return output_dict
 
 
-def run(n, output):
+def run(n: int, output: str):
+    """
+    Args:
+        n: value for n-gram
+        output: output directory for evaluation results
+    """
     sentences = load_brown()
     data = preprocess()
     model = build_ngram(n, sentences)
