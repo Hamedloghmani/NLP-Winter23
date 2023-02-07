@@ -1,0 +1,5 @@
+nltk
+pytrec_eval
+numpy
+tqdm
+pandas
