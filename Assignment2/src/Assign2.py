@@ -4,7 +4,7 @@ from nltk.corpus import brown
 from nltk.lm.preprocessing import padded_everygram_pipeline
 from nltk.lm import MLE
 
-from Assignment1.src.Assign1 import evaluate
+from evaluation_util import evaluate
 nltk.download('brown')
 
 def load_brown() -> list:
